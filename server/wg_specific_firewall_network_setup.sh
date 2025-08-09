@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WG_PORT=$(grep '^WG_PORT=' ./env | cut -d '=' -f2)
+WG_PORT=$(grep '^WG_PORT=' ./.env | cut -d '=' -f2)
 
 if [[ -z "$WG_PORT" ]]; then
   echo "Error: WG_PORT not set in env file."
