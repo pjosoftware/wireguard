@@ -17,6 +17,7 @@ services:
       - INTERNAL_SUBNET=10.0.0.0/24
     volumes:
       - ./config:/config
-      - ./wireguard_templates/peer.conf:/config/templates/peer.conf:ro
+      - ./wireguard_templates/:/config/templates/:ro
+      - ./wireguard_templates/:/config/templates/:ro
       - /lib/modules:/lib/modules
     restart: unless-stopped
