@@ -19,6 +19,4 @@ services:
       - ./config:/config
       - ./wireguard_templates/peer.conf:/config/templates/peer.conf:ro
       - /lib/modules:/lib/modules
-    ports:
-      - ${WG_PORT}:${WG_PORT}/udp
     restart: unless-stopped
