@@ -1,0 +1,22 @@
+services:
+  wireguard:
+    image: linuxserver/wireguard
+    container_name: wireguard-server
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+      - SERVERURL=${WG_SERVER_PUBLIC_IP}
+      - SERVERPORT=${WG_PORT}
+      - PEERS=1
+      - PEERDNS=1.1.1.1
+      - INTERNAL_SUBNET=10.0.0.0/24
+    volumes:
+      - ./config:/config
+      - ./wireguard_templates/peer.conf:/config/templates/peer.conf:ro
+      - /lib/modules:/lib/modules
+    restart: unless-stopped
