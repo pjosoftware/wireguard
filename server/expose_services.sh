@@ -2,10 +2,12 @@
 
 CONFIG_FILE="services.conf"
 
-while IFS=: read -r name destination port protocol; do
-    # Skip empty lines or comments
+while IFS=: read -r name destination port protocol || [ -n "$name" ]; do
+    # Skip empty or commented lines
     [[ -z "$name" || "$name" =~ ^# ]] && continue
 
-    echo "Applying rule for $name: $protocol port $port → $destination:$port"
+    protocol="${protocol//$'\r'/}"
+
+    echo "iptables -t nat -A PREROUTING -p $protocol --dport $port -j DNAT --to-destination $destination:$port"
     iptables -t nat -A PREROUTING -p "$protocol" --dport "$port" -j DNAT --to-destination "$destination:$port"
 done < "$CONFIG_FILE"
