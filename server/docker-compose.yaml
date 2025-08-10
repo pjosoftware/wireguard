@@ -19,5 +19,6 @@ services:
       - ./config:/config
       - ./wireguard_templates/:/config/templates/:ro
       - ./wireguard_templates/:/config/templates/:ro
+      - ./wireguard:/etc/wireguard
       - /lib/modules:/lib/modules
     restart: unless-stopped
