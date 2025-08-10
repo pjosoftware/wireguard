@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-RULES_FILE="$SCRIPT_DIR/port_forwarding_rules.conf"
+RULES_FILE="$SCRIPT_DIR/port_forwarding.rules"
 ACTION="$1"  # "add" or "delete"
 
 if [[ "$ACTION" == "add" ]]; then
